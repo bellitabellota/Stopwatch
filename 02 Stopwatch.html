@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+</head>
+<body>
+  <p>
+    <span class="js-display-minutes">00</span>:<span class="js-display-seconds">00</span>
+  </p>
+
+  <button class="js-start-button">Start</button>
+  <button class="js-stop-button">Stop</button>
+
+  <script>
+    let seconds = 0;
+    let minute = 0;
+    let intervalId;
+
+    document.querySelector('.js-start-button')
+      .addEventListener('click', () => {
+        clearInterval(intervalId);
+        intervalId = setInterval(() => {
+          
+          if (seconds < 59) {
+            seconds ++;            
+            document.querySelector('.js-display-seconds').innerHTML = (seconds).toString().padStart(2, '0');
+          } else {
+            minute ++;
+            seconds = 0;
+            document.querySelector('.js-display-minutes').innerHTML = (minute).toString().padStart(2, '0');
+            document.querySelector('.js-display-seconds').innerHTML = (seconds).toString().padStart(2, '0');
+          }
+        
+        }, 1000);
+      });
+
+    document.querySelector('.js-stop-button')
+      .addEventListener('click', () => {
+        clearInterval(intervalId);
+      });
+
+  </script>
+  
+</body>
+</html>
